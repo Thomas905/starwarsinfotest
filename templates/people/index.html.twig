@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">List of characters</h1>
+    <div class="d-flex row align-items-center justify-content-center">
+        {{ form_start(form) }}
+        <div class="d-flex mb-5 ms-5">
+            {{ form_widget(form) }}
+            <button class="btn btn-warning ms-5">Search</button>
+        </div>
+
+        {{ form_end(form) }}
+    {% for character in characters %}
+            <div class="card me-4 mb-4 mt-5" style="width: 18rem;">
+                {% if character.picture != 1 %}
+                    <img src="{{ asset('uploads/pictures/' ~ character.picture) }}" class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ character.name }}</h5>
+                    <p class="card-text">{{ character.gender }}</p>
+                    <p class="card-text">{{ character.height }}</p>
+                    <p class="card-text">{{ character.mass }}</p>
+                    <a class="btn btn-primary" href="{{ path('people', {id: character.id}) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ path('people_delete', {id: character.id}) }}">Delete</a>
+                </div>
+            </div>
+    {% endfor %}
+    </div>
+
+
+{% endblock %}

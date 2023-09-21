@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">List of movies</h1>
+    <div class="d-flex row align-items-center justify-content-center">
+        <a href="{{ path('movie') }}">Back to list</a>
+        <div class="card me-4 mb-4 mt-5" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ movie.name }}</h5>
+                <span>list character of this movie</span>
+                {% for character in movie.characters %}
+                    <h6>{{ character.name }}</h6>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
